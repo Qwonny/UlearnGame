@@ -1,13 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using livingObjects;
 public class PlayerController : MonoBehaviour
 {
 	public Animator anim;
-	public float moveSpeed;
-	public float jumpHeight;
-
 	public Transform groundCheck;
 	public float groundCheckRadius;
 	public LayerMask whatIsGround;
@@ -26,15 +23,15 @@ public class PlayerController : MonoBehaviour
     {
 		if (Input.GetKeyDown (KeyCode.UpArrow) && grounded)
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpHeight);
+			GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, Hero.jumpHeight);
 		}
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
+			GetComponent<Rigidbody2D>().velocity = new Vector2(Hero.moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
 		}
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, GetComponent<Rigidbody2D>().velocity.y);			
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-Hero.moveSpeed, GetComponent<Rigidbody2D>().velocity.y);			
 		}
 		anim.SetFloat("Speed", Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x));
 		if (GetComponent<Rigidbody2D>().velocity.x < 0)
